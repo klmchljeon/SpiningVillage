@@ -7,15 +7,13 @@ using UnityEngine.Rendering;
 
 public class CameraMoveToNextMap : MonoBehaviour
 {
-    // 카메라 이동 속도
     public float smoothSpeed = 0.5f;
-    // 맵 위치 배열
+
     public Transform[] mapPositions;
-    // 현재 맵 인덱스
     private int currentMapIndex = 0;
-    // 이동 여부
+
     private bool isMoved;
-    // 플레이어 
+
     private GameObject player;
 
     private Vector3 lastPosition;
@@ -58,14 +56,13 @@ public class CameraMoveToNextMap : MonoBehaviour
         int i;
         if (idx == 0) i = 4;
         else if (idx == 5) i = 1;
-        else return;
+        else i = idx;
 
         Vector3 playerPosition = player.transform.position;
         Vector3 offset = playerPosition - Camera.main.transform.position;
 
         Camera.main.transform.position = new Vector3(mapPositions[i].position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
         player.transform.position = Camera.main.transform.position + offset;
-        return;
     }
 
     private bool MoveCamera(int idx)
